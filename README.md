@@ -50,6 +50,45 @@ The application is engineered as a lightweight, zero-dependency, serverless PWA 
 3. **Internal Proxy (`proxy.js`)**: Intercepts requests on production to transparently rewrite a customizable secret route (`process.env.ADMIN_PATH`) to the admin panel while returning `404` for the default `/admin` path.
 4. **Auth Helper**: Zero-dependency token decryption and session state encryption via Node's native `crypto` API (AES-256-CBC).
 
+### 📂 Directory Structure
+
+```text
+freelance-portfolio-pwa/
+├── public/                 # Static assets & PWA configuration files
+│   ├── manifest.json       # PWA Web App Manifest
+│   ├── sw.js               # Service Worker for offline operations
+│   ├── logo.png            # Cruz Dev Brand Logo
+│   ├── showcase-*.png      # Portfolio project preview images
+│   └── favicon*            # Standard Favicon assets
+├── src/
+│   ├── app/                # Next.js App Router folders
+│   │   ├── admin/
+│   │   │   └── page.js     # Admin Dashboard client view
+│   │   ├── api/            # API Endpoints
+│   │   │   ├── auth/       # Check, Callback, and Logout routes
+│   │   │   ├── booking/    # Bookings management CRUD
+│   │   │   ├── chat-session/ # Real-time chat sync and controls
+│   │   │   ├── reviews/    # Reviews and testimonials
+│   │   │   └── validate-email/ # Email domain lookup route
+│   │   ├── favicon.ico
+│   │   ├── globals.css     # Global theme & typography rules
+│   │   └── layout.js       # App shell layout structure
+│   ├── components/         # Reusable React components
+│   │   ├── Chatbot.js      # Client-side booking assistant chatbot
+│   │   └── UpiPayment.js   # Dynamic UPI QR generation and verification
+│   ├── config/             # Shared variables and helpers
+│   │   ├── auth-helper.js  # Node crypto-based session encryption/decryption
+│   │   └── pricing.js      # Packages and pricing configuration
+│   └── proxy.js            # Next.js request boundary for secret admin route rewrite
+├── .env.example            # Non-sensitive environment configuration template
+├── .gitignore              # Rules for ignoring local env files and next logs
+├── eslint.config.mjs       # Lint configurations
+├── jsconfig.json           # Path mappings
+├── next.config.mjs         # Next.js configuration
+├── package.json            # Node dependencies list
+└── README.md               # Project overview and documentation
+```
+
 ---
 
 ## 📊 Flow Diagrams
